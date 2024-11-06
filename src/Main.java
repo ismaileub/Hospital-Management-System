@@ -34,6 +34,7 @@ public class Main {
 
                 System.out.print("Enter your option: ");
                 int n =input.nextInt();
+                input.nextLine();
 
                 if (n >= 1 && n <= 5){
                     switch(n){
@@ -54,7 +55,7 @@ public class Main {
 
                         case 4:
                             Facilities f = new Facilities();
-                            f.display();
+                            f.facilities();
                             break;
 
 

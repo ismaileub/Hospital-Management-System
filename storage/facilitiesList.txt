@@ -1,0 +1,11 @@
+MRI Scan        500
+Laboratory Tests        50
+Dialysis Treatment         350
+Chemotherapy        150
+Physical Therapy        100
+Surgical Operation        500
+General Consultation         50
+ECG        80
+Blood Test        60
+X-ray        250
+CT Scan        900
