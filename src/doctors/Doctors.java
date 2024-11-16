@@ -63,8 +63,13 @@ public class Doctors extends Person {
 
     // Method to add a doctor by capturing user data and saving it to a file
     private void addDoctor(Scanner scanner) {
-        int choice;
-        do {
+        int option;
+
+
+            System.out.println("\n--------------------------------------------------------------------------------");
+            System.out.println("                      **ADD DOCTOR**                                            ");
+            System.out.println("--------------------------------------------------------------------------------");
+
             System.out.print("Doctor's ID: ");
             int id = scanner.nextInt();
             scanner.nextLine();
@@ -100,24 +105,23 @@ public class Doctors extends Person {
 
             // Save the doctor data to the file
             try (FileWriter writer = new FileWriter("doctorsList.txt", true)) {
-                writer.write(doctor.toString() + "\n");
-                System.out.println("Doctor added successfully: " + doctor.toString());
+                writer.write(doctor + "\n");
+                System.out.println("\nDoctor added successfully: " + doctor);
             } catch (IOException e) {
                 System.out.println("An error occurred while saving the doctor data: " + e.getMessage());
             }
 
-            // Ask user if they want to add another doctor or return to the main menu
-            System.out.println("\nPress 1 to add another doctor, or 0 to return to the main menu.");
-            choice = scanner.nextInt();
-            scanner.nextLine(); // Consume the newline character
-        } while (choice == 1);
+        details();
 
-        System.out.println("Returning to the main menu...");
+
+
     }
+
 
     // Method to format doctor details for file storage
     @Override
     public String toString() {
+        System.out.println("toString method called");
         return "ID: " + id + ", Name: " + name + ", Age: " + age + ", Gender: " + gender + ", Phone: " + phone +
                 ", Specialty: " + specialty + ", Qualification: " + qualification + ", Timing: " + timing + ", Room: " + roomNumber;
     }
