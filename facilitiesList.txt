@@ -9,3 +9,4 @@ ECG        80
 Blood Test        60
 X-ray        250
 CT Scan        900    
+df        20
