@@ -3,3 +3,4 @@ ID: 2, Name: Dr. Sarah Johnson, Age: 28, Gender: Female, Phone: 0258, Specialty:
 ID: 3, Name: Dr. Michael Brown, Age: 35, Gender: Male, Phone: 0256565, Specialty: Cardiologist, Qualification: MBBS, DM (Doctorate in Medicine - Cardiology), Timing: 10:00-6:00, Room: 103
 ID: 4, Name: Dr. Emily Davis, Age: 40, Gender: Female, Phone: 3032, Specialty: Dermatologist, Qualification: MBBS, MD (Dermatology), Timing: 9:00-3:00, Room: 104
 ID: 5, Name: Dr. David Clark, Age: 32, Gender: Male, Phone: 025, Specialty: Orthopedist, Qualification: MBBS, MS (Orthopedics), Timing: 8:00-12:00, Room: 105
+

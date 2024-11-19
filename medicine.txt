@@ -1,0 +1,2 @@
+Name: napa, Price: 20.0, Stock: 3
+Name: Rupa, Price: 30.0, Stock: 5

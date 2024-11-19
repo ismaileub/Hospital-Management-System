@@ -37,7 +37,7 @@ public class Doctors extends Person {
             System.out.println("--------------------------------------------------------------------------------");
 
             System.out.println("1. Add Doctor");
-            System.out.println("2. Display Doctors List");
+            System.out.println("2. Display Doctors Information");
             System.out.println("0. Return to Main Menu");
             System.out.print("Choose an option: ");
 
@@ -103,15 +103,13 @@ public class Doctors extends Person {
             // Create a new Doctors object
             Doctors doctor = new Doctors(id, name, age, gender, phone, specialty, qualification, timing, roomNumber);
 
-            // Save the doctor data to the file
-            try (FileWriter writer = new FileWriter("doctorsList.txt", true)) {
-                writer.write(doctor + "\n");
-                System.out.println("\nDoctor added successfully: " + doctor);
-            } catch (IOException e) {
-                System.out.println("An error occurred while saving the doctor data: " + e.getMessage());
-            }
 
-        details();
+            String data = doctor.toString();
+            String fileName = "doctorsList.txt";
+            writeDataInDatabase(data, fileName);
+
+         // details();
+        return;
 
 
 
