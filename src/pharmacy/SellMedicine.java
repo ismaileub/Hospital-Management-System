@@ -1,25 +1,27 @@
 package pharmacy;
 
-import person.Person;
+import common.Common;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class SellMedicine extends Person {
+public class SellMedicine extends Common {
 
-    ArrayList<String> medicineList = new ArrayList<>();
+    private ArrayList<String> medicineList = new ArrayList<>();
 
-    public boolean update = false;
 
-    public void addAllDtaInList() {
+
+    public void addAllDataToList() {
+        medicineList.clear();
         try {
             File file = new File("medicine.txt");
             Scanner scanner = new Scanner(file);
 
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                medicineList.add(line); // Add each line as it is to the list
+                medicineList.add(line.trim());
             }
 
             scanner.close();
@@ -29,10 +31,11 @@ public class SellMedicine extends Person {
     }
 
 
+
     private void writeBackToFile() {
         try {
             File file = new File("medicine.txt");
-            java.io.FileWriter writer = new java.io.FileWriter(file);
+            FileWriter writer = new FileWriter(file);
 
             for (String line : medicineList) {
                 writer.write(line + "\n");
@@ -45,67 +48,127 @@ public class SellMedicine extends Person {
     }
 
 
-    public void update(boolean update) {
-        this.update = update;
 
-    }
-
-    @Override
-    public void details() {
-
-        addAllDtaInList(); // Load all medicines into the list
-
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Enter medicine name to sell: ");
-        String medicineName = scanner.nextLine();
-
-        System.out.print("Enter quantity to sell: ");
-        int quantityToSell = scanner.nextInt();
-
+    private boolean updateStockByName(String medicineName, int stockChange, boolean isSell) {
         boolean medicineFound = false;
-        boolean stockSufficient = false;
 
-        // Iterate through the medicine list to find and update the medicine
+
         for (int i = 0; i < medicineList.size(); i++) {
             String line = medicineList.get(i);
 
-            // Extract fields using proper parsing
+            // Parse medicine details
             String[] data = line.split(",");
+            try {
+                String name = data[0].split(":")[1].trim();
+                double price = Double.parseDouble(data[1].split(":")[1].trim());
+                int stock = Integer.parseInt(data[2].split(":")[1].trim());
 
-            String name = data[0].split(":")[1].trim();  // Extract name after "Name:"
 
-            double price = Double.parseDouble(data[1].split(":")[1].trim());  // Extract price after "Price:"
+                if (name.equalsIgnoreCase(medicineName)) {
+                    medicineFound = true;
 
-            int stock = Integer.parseInt(data[2].split(":")[1].trim());  // Extract stock after "Stock:"
+                    int updatedStock = stock + stockChange;
 
-            if (name.equalsIgnoreCase(medicineName)) {
-                medicineFound = true;
 
-                if (stock >= quantityToSell) {
-                    stockSufficient = true;
-                    double totalCost = quantityToSell * price;
-                    stock -= quantityToSell; // Reduce stock
 
-                    // Update the medicine record in the list
-                    medicineList.set(i, "Name: " + name + ", Price: " + price + ", Stock: " + stock);
+                    if (isSell && stockChange < 0) {
+                        if (stock < -stockChange) {
+                            System.out.println("Error: Insufficient stock to complete the operation!");
+                            return false;
+                        }
+                        double totalPrice = (-stockChange) * price; // Calculate total price for selling
+                        System.out.println("Total price: $" + totalPrice);
+                    } else if (updatedStock < 0) {
+                        System.out.println("Error: Stock cannot be negative!");
+                        return false;
+                    }
 
-                    //System.out.println("Medicine sold successfully!");
-                    System.out.println("Total price: " + totalCost);
+                    // Update the record in the list
+                    medicineList.set(i, "Name: " + name + ", Price: " + price + ", Stock: " + updatedStock);
+
+                    System.out.println("Stock updated successfully for medicine: " + name);
+                    return true; // Exit after updating
                 }
-                break;
+
+            } catch (Exception e) {
+                System.out.println("Error parsing medicine data: " + e.getMessage());
             }
         }
 
         if (!medicineFound) {
-            System.out.println("Medicine not found!");
-        } else if (!stockSufficient) {
-            System.out.println("Insufficient stock!");
+            System.out.println("\nError: Medicine not found in the inventory.");
         }
 
-        // Write the updated list back to the file
-        writeBackToFile();
+        return false;
     }
 
 
+
+    public void sellMedicine() {
+        addAllDataToList(); // Load all medicines into the list
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter medicine name to sell: ");
+        String medicineName = scanner.nextLine().trim();
+
+        System.out.print("Enter quantity to sell: ");
+        int quantityToSell;
+
+        try {
+            quantityToSell = scanner.nextInt();
+        } catch (Exception e) {
+            System.out.println("\nInvalid input for quantity! Please enter a valid number.");
+            return;
+        }
+
+
+        boolean success = updateStockByName(medicineName, -quantityToSell, true);
+
+        if (success) {
+            System.out.println("Successfully purchased");
+            writeBackToFile(); // Write changes to the file
+        }
+    }
+
+
+    public void updateStock() {
+        addAllDataToList(); // Load all medicines into the list
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter medicine name to update: ");
+        String medicineName = scanner.nextLine().trim();
+
+        System.out.print("Enter stock to add or set (positive or negative number): ");
+        int stockChange;
+
+        try {
+            stockChange = scanner.nextInt();
+        } catch (Exception e) {
+            System.out.println("\nInvalid input for stock! Please enter a valid number.");
+            return;
+        }
+
+        // Call the general update method to adjust stock
+        boolean success = updateStockByName(medicineName, stockChange, false);
+
+        if (success) {
+            writeBackToFile(); // Write changes to the file
+        }
+    }
+
+
+    public void sellAndUpdate(int option) {
+        if (option == 1) {
+            sellMedicine();
+        } else if (option == 2) {
+            updateStock();
+        }
+    }
+
+    @Override
+    public void details() {
+        // Details implementation if required
+    }
 }

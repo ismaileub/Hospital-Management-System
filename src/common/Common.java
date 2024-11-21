@@ -1,20 +1,22 @@
-package person;
+package common;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public abstract class Person {
+public abstract class Common {
+
     public int id;
     public String name;
     public int age;
     public String gender;
     public String phone;
 
-    public Person() {}
+    public Common() {
+    }
 
-    public Person(int id, String name, int age, String gender, String phone) {
+    public Common(int id, String name, int age, String gender, String phone) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -25,7 +27,7 @@ public abstract class Person {
     // Abstract method for specific details in subclasses
     public abstract void details();
 
-    public void writeDataInDatabase(String data, String fileName){
+    public void writeDataInDatabase(String data, String fileName) {
 
         // Save the doctor data to the file
         try (FileWriter writer = new FileWriter(fileName, true)) {

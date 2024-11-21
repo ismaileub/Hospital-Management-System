@@ -44,7 +44,7 @@ public class Facilities {
     private void addNewFacility(Scanner input) {
         int num = 1;
 
-        while (num == 1) {
+        //while (num == 1) {
             try {
                 System.out.println("Enter facility name and cost");
                 System.out.print("Name: ");
@@ -54,22 +54,29 @@ public class Facilities {
                 cost = input.nextLine();
 
                 try (FileWriter writer = new FileWriter("facilitiesList.txt", true)) {
+
                     writer.write(name + "        " + cost + "\r\n");
                     System.out.println("Facility added successfully: " + name + " - $" + cost);
+                    facilities();
+
+
                 } catch (IOException e) {
                     System.out.println("An error occurred while writing to the file: " + e.getMessage());
                 }
 
-                System.out.println("\nPress 1 to add another facility, or 0 to return to the main menu.");
-                num = input.nextInt();
-                input.nextLine();  // Consume newline character
+//                System.out.println("\nPress 1 to add another facility, or 0 to return to the main menu.");
+//                num = input.nextInt();
+//                input.nextLine();  // Consume newline character
 
             } catch (Exception e) {
                 System.out.println("Invalid input. Please enter a valid name and cost.");
                 input.nextLine();  // Clear the input buffer
             }
-        }
+        //}
     }
+
+
+
 
     private void checkFacilitiesList(Scanner input) {
         try {

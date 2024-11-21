@@ -11,8 +11,8 @@ public class Pharmacy {
 
         Scanner input = new Scanner(System.in);
         AddMedicine addMedicineObj = new AddMedicine();
-        SellMedicine sell = new SellMedicine();
-        boolean stockUpdate = true;
+        SellMedicine sellMedicine = new SellMedicine();
+        UpdateMedicine update = new UpdateMedicine();
 
 
         while (true) {
@@ -33,10 +33,10 @@ public class Pharmacy {
                     addMedicineObj.displayInformation("medicine.txt");
                     break;
                 case 3:
-                    sell.details();
+                    sellMedicine.sellAndUpdate(1);
                     break;
                 case 4:
-                    sell.update(stockUpdate);
+                    sellMedicine.sellAndUpdate(2);
                     break;
                 case 5:
                     System.out.println("Exiting... Thank you!");
