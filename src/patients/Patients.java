@@ -13,7 +13,11 @@ public class Patients{
         AddPatient add = new AddPatient();
 
         while (true) {
-            System.out.println("\n=== Patients Section ===");
+
+            System.out.println("\n--------------------------------------------------------------------------------");
+            System.out.println("                      **Patients Section**                                        ");
+            System.out.println("--------------------------------------------------------------------------------");
+
             System.out.println("1. Add New Patient");
             System.out.println("2. Display All Patients");
             System.out.println("3. Search Patient by Name");
