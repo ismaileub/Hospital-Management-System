@@ -6,8 +6,10 @@ import java.util.Scanner;
 public class AddMedicine extends Common {
 
     Medicine obj = new Medicine();
+    Scanner input = new Scanner(System.in);
 
-    public void takeInfo(Scanner input) {
+    @Override
+    public void details() {
         System.out.print("Enter medicine name: ");
         String name = input.next();
         System.out.print("Enter price: ");
@@ -23,8 +25,5 @@ public class AddMedicine extends Common {
         writeDataInDatabase(allData, "medicine.txt");
     }
 
-    @Override
-    public void details() {
 
-    }
 }

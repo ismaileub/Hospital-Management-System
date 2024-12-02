@@ -42,9 +42,9 @@ public class Facilities {
     }
 
     private void addNewFacility(Scanner input) {
-        int num = 1;
 
-        //while (num == 1) {
+
+
             try {
                 System.out.println("Enter facility name and cost");
                 System.out.print("Name: ");
@@ -64,13 +64,9 @@ public class Facilities {
                     System.out.println("An error occurred while writing to the file: " + e.getMessage());
                 }
 
-//                System.out.println("\nPress 1 to add another facility, or 0 to return to the main menu.");
-//                num = input.nextInt();
-//                input.nextLine();  // Consume newline character
-
             } catch (Exception e) {
                 System.out.println("Invalid input. Please enter a valid name and cost.");
-                input.nextLine();  // Clear the input buffer
+                input.nextLine();
             }
         //}
     }
@@ -101,7 +97,7 @@ public class Facilities {
                 if (parts.length >= 2) {
                     String name = String.join(" ", Arrays.copyOfRange(parts, 0, parts.length - 1));
                     String cost = parts[parts.length - 1];
-                    System.out.println(String.format("%-3d %-30s %-10s", i, name, cost));
+                    System.out.println(String.format("%-3d %-30s $%-10s", i, name, cost));
                 }
             }
             reader.close();

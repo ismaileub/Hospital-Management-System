@@ -10,9 +10,8 @@ public class Doctors extends Common {
     private String timing;
     private int roomNumber;
 
-    public Doctors(int id, String name, int age, String gender, String phone, String specialty, String qualification, String timing, int roomNumber) {
+    public Doctors(int id, String name, int age, String gender, String phone, String qualification, String timing, int roomNumber) {
         super(id, name, age, gender, phone);
-        this.specialty = specialty;
         this.qualification = qualification;
         this.timing = timing;
         this.roomNumber = roomNumber;
@@ -20,10 +19,8 @@ public class Doctors extends Common {
 
     // Default constructor
     public Doctors() {
-
     }
 
-    // Method to display the Doctors section menu and perform actions based on user input
     @Override
     public void details() {
         Scanner scanner = new Scanner(System.in);
@@ -47,7 +44,7 @@ public class Doctors extends Common {
                     addDoctor(scanner);
                     break;
                 case 2:
-                    displayInformation("doctorsList.txt");
+                    displayDoctors();
                     break;
                 case 0:
                     System.out.println("Returning to the main menu...");
@@ -56,64 +53,50 @@ public class Doctors extends Common {
                     System.out.println("Invalid option. Please choose 1, 2, or 0.");
                     break;
             }
-        } while (option != 0); // Continue until the user chooses to return to the main menu
+        } while (option != 0);
     }
 
-    // Method to add a doctor by capturing user data and saving it to a file
+    // Display doctor data (header + rows)
+    private void displayDoctors() {
+        System.out.println("\n----------------------------------------- Doctor List ----------------------------------------------------");
+        System.out.printf("%-7s %-19s %-5s %-10s %-15s %-26s %-12s %-20s\n",
+                "ID", "Name", "Age", "Gender", "Phone", "Qualification", "Timing", "Room No.");
+        System.out.println("------------------------------------------------------------------------------------------------------------");
+
+        displayDataRows("doctorsList.txt");
+    }
+
     private void addDoctor(Scanner scanner) {
-        int option;
-
-        System.out.println("\n--------------------------------------------------------------------------------");
-        System.out.println("                      **ADD DOCTOR**                                            ");
-        System.out.println("--------------------------------------------------------------------------------");
-
         System.out.print("Doctor's ID: ");
         int id = scanner.nextInt();
         scanner.nextLine();
 
         System.out.print("Doctor's name: ");
-        String name = scanner.nextLine();
+         name = scanner.nextLine();
 
         System.out.print("Doctor's age: ");
-        int age = scanner.nextInt();
+         age = scanner.nextInt();
         scanner.nextLine();
 
         System.out.print("Doctor's gender: ");
-        String gender = scanner.nextLine();
+         gender = scanner.nextLine();
 
         System.out.print("Doctor's phone: ");
-        String phone = scanner.nextLine();
-
-        System.out.print("Doctor's specialty: ");
-        String specialty = scanner.nextLine();
+         phone = scanner.nextLine();
 
         System.out.print("Doctor's qualification: ");
-        String qualification = scanner.nextLine();
+         qualification = scanner.nextLine();
 
         System.out.print("Doctor's timing: ");
-        String timing = scanner.nextLine();
+         timing = scanner.nextLine();
 
         System.out.print("Doctor's room number: ");
-        int roomNumber = scanner.nextInt();
+         roomNumber = scanner.nextInt();
         scanner.nextLine();
 
-        // Create a new Doctors object
-        Doctors doctor = new Doctors(id, name, age, gender, phone, specialty, qualification, timing, roomNumber);
+        Doctors doctor = new Doctors(id, name, age, gender, phone, qualification, timing, roomNumber);
+        String data = id + "," + name + "," + age + "," + gender + "," + phone + "," + qualification + "," + timing + "," + roomNumber;
 
-        String data = doctor.toString();
-        String fileName = "doctorsList.txt";
-        writeDataInDatabase(data, fileName);
-
-        // details();
-        return;
-
-    }
-
-    // Method to format doctor details for file storage
-    @Override
-    public String toString() {
-        System.out.println("toString method called");
-        return "ID: " + id + ", Name: " + name + ", Age: " + age + ", Gender: " + gender + ", Phone: " + phone
-                + ", Specialty: " + specialty + ", Qualification: " + qualification + ", Timing: " + timing + ", Room: " + roomNumber;
+        writeDataInDatabase(data, "doctorsList.txt");
     }
 }

@@ -27,26 +27,36 @@ public abstract class Common {
     // Abstract method for specific details in subclasses
     public abstract void details();
 
+    // Method to write data into a file
     public void writeDataInDatabase(String data, String fileName) {
-
-        // Save the doctor data to the file
         try (FileWriter writer = new FileWriter(fileName, true)) {
             writer.write(data + "\n");
             System.out.println("\nData added successfully: " + data);
         } catch (IOException e) {
-            System.out.println("An error occurred while saving the doctor data: " + e.getMessage());
+            System.out.println("An error occurred while saving the data: " + e.getMessage());
         }
     }
 
-    // Method to display information from a given file
-    public void displayInformation(String fileName) {
+    // Method to display only the data rows from a file
+    public void displayDataRows(String fileName) {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
+            boolean isEmpty = true;
+
             while ((line = reader.readLine()) != null) {
-                System.out.println(line);
+                isEmpty = false;
+                String[] data = line.split(","); // Split the CSV data
+                if (data.length >= 8) {
+                    System.out.printf("%-5s %-20s %-5s %-10s %-15s %-25s %-15s %-20s\n",
+                            data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]);
+                }
+            }
+
+            if (isEmpty) {
+                System.out.println("No patients found in the system.");
             }
         } catch (IOException e) {
-            System.out.println("An error occurred while reading data: " + e.getMessage());
+            System.out.println("An error occurred while reading the data: " + e.getMessage());
         }
     }
 }

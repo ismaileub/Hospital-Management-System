@@ -12,7 +12,8 @@ public class Pharmacy {
         Scanner input = new Scanner(System.in);
         AddMedicine addMedicineObj = new AddMedicine();
         SellMedicine sellMedicine = new SellMedicine();
-        UpdateMedicine update = new UpdateMedicine();
+        //UpdateMedicine update = new UpdateMedicine();
+        Medicine m = new Medicine();
 
 
         while (true) {
@@ -27,10 +28,10 @@ public class Pharmacy {
 
             switch (choice) {
                 case 1:
-                    addMedicineObj.takeInfo(input);
+                    addMedicineObj.details();
                     break;
                 case 2:
-                    addMedicineObj.displayInformation("medicine.txt");
+                    m.displayInformation();
                     break;
                 case 3:
                     sellMedicine.sellAndUpdate(1);
@@ -40,7 +41,7 @@ public class Pharmacy {
                     break;
                 case 5:
                     System.out.println("Exiting... Thank you!");
-                    input.close();
+
                     return;
                 default:
                     System.out.println("Invalid choice. Please try again.");
