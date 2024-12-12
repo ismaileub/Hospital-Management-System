@@ -1,6 +1,6 @@
 # Hospital and Health Care Management System 🌟
 
-A command-line application developed as part of the Object-Oriented Programming (OOP) Sessional Course at [Your University Name]. This project simulates a hospital management system, providing functionalities to manage doctors, patients, pharmacy operations, and hospital facilities using core OOP principles in Java.
+A command-line application developed as part of the Object-Oriented Programming (OOP) Sessional Course of my university(European University of Bangladesh). This project simulates a hospital management system, providing functionalities to manage doctors, patients, pharmacy operations, and hospital facilities using core OOP principles in Java.
 
 ---
 
