@@ -13,15 +13,15 @@ public class Patients{
         AddPatient add = new AddPatient();
 
         while (true) {
-
             System.out.println("\n--------------------------------------------------------------------------------");
             System.out.println("                      **Patients Section**                                        ");
             System.out.println("--------------------------------------------------------------------------------");
 
             System.out.println("1. Add New Patient");
             System.out.println("2. Display All Patients");
-            System.out.println("3. Search Patient by Name");
-            System.out.println("4. Return to Main Menu");
+            System.out.println("3. Search Patient");
+            System.out.println("4. Remove Patient");
+            System.out.println("5. Return to Main Menu");
             System.out.print("Enter your choice: ");
             int choice = input.nextInt();
             input.nextLine(); // Consume newline character
@@ -37,6 +37,9 @@ public class Patients{
                     add.search();
                     break;
                 case 4:
+                    add.removePatient();
+                    break;
+                case 5:
                     System.out.println("Returning to Main Menu...");
                     return;
                 default:
@@ -44,6 +47,7 @@ public class Patients{
             }
         }
 
-}
+
+    }
 
 }

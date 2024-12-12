@@ -3,3 +3,5 @@
 3, Dr. Michael Lee, 50, Male, 01745632, MBBS, 2:00-6:00, 103
 4, Dr. Sarah Johnson, 35, Female, 01678452, DO, 8:00-12:00, 104
 5, Dr. David Clark, 40, Male, 01856324, MD, 3:00-7:00, 105
+6, Dr. Smith,30,Male,015987231,MBBS,4.00-9.00,106
+7,gjh,20,m,0256,mbbs,2.00-6.00,107

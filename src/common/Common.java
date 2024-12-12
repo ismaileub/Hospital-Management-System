@@ -59,4 +59,38 @@ public abstract class Common {
             System.out.println("An error occurred while reading the data: " + e.getMessage());
         }
     }
+
+
+    // Method to remove a patient by ID
+    public void removeDataById(String patientId, String fileName) {
+        boolean found = false;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            StringBuilder updatedData = new StringBuilder();
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+                if (data.length >= 8 && data[0].equalsIgnoreCase(patientId)) {
+                    found = true; // Skip the matching line
+                } else {
+                    updatedData.append(line).append("\n");
+                }
+            }
+
+            if (found) {
+                try (FileWriter writer = new FileWriter(fileName, false)) { // Overwrite the file
+                    writer.write(updatedData.toString());
+                    System.out.println("\nPatient with ID " + patientId + " has been removed successfully.");
+                } catch (IOException e) {
+                    System.out.println("An error occurred while updating the file: " + e.getMessage());
+                }
+            } else {
+                System.out.println("No patient found with ID: " + patientId);
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred while reading the file: " + e.getMessage());
+        }
+    }
+
 }

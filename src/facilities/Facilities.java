@@ -42,34 +42,29 @@ public class Facilities {
     }
 
     private void addNewFacility(Scanner input) {
+        try {
+            System.out.println("Enter facility name and cost");
+            System.out.print("Name: ");
+            name = input.nextLine();
 
+            System.out.print("Cost: ");
+            cost = input.nextLine();
 
-
-            try {
-                System.out.println("Enter facility name and cost");
-                System.out.print("Name: ");
-                name = input.nextLine();
-
-                System.out.print("Cost: ");
-                cost = input.nextLine();
-
-                try (FileWriter writer = new FileWriter("facilitiesList.txt", true)) {
-
-                    writer.write(name + "        " + cost + "\r\n");
-                    System.out.println("Facility added successfully: " + name + " - $" + cost);
-                    facilities();
-
-
-                } catch (IOException e) {
-                    System.out.println("An error occurred while writing to the file: " + e.getMessage());
-                }
-
-            } catch (Exception e) {
-                System.out.println("Invalid input. Please enter a valid name and cost.");
-                input.nextLine();
+            // Append data to the file
+            try (FileWriter writer = new FileWriter("facilitiesList.txt", true)) {
+                writer.write(name + "        " + cost + "\r\n");
+                writer.flush(); // Ensure data is written to the file
+                System.out.println("Facility added successfully: " + name + " - $" + cost+"\n");
+                facilities();
+            } catch (IOException e) {
+                System.out.println("An error occurred while writing to the file: " + e.getMessage());
             }
-        //}
+        } catch (Exception e) {
+            System.out.println("Invalid input. Please enter a valid name and cost.");
+            input.nextLine(); // Clear invalid input
+        }
     }
+
 
 
 

@@ -124,6 +124,20 @@ public class AddPatient extends Common {
         }
     }
 
+    // Method to remove a patient by ID
+    public void removePatient() {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("\n--- Remove Patient ---");
+        System.out.print("Enter Patient ID: ");
+        String removeId = input.nextLine();
+
+        
+        removeDataById(removeId, "patients.txt");
+    }
+
+
+
     // Display details of a single patient
     private void displayPatientDetails(String[] data) {
         System.out.println("\n--- Patient Details ---");

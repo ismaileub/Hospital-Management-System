@@ -1,5 +1,7 @@
-Name: napa, Price: 20.0, Stock: 2
+Name: napa, Price: 20.0, Stock: 0
 Name: Rupa, Price: 30.0, Stock: 5
 Name: sdfg, Price: 30.0, Stock: 6
 Name: Rolac, Price: 50.0, Stock: 5
 
+Name: Sarjel, Price: 30.0, Stock: 2
+Name: lk;, Price: 20.0, Stock: 2

@@ -9,9 +9,6 @@ ECG        80
 Blood Test        60
 X-ray        250
 CT Scan        900    
-df        20
-        
-asdf        200
-sdf        200
-dfg        20
-dfg        230
+Covid Test        50
+hkgjh        600
+jkhg        30
