@@ -17,26 +17,35 @@ public class Facilities {
 
 
     public void facilities() {
+
         if (firstTime) {
             banner();
             firstTime = false;
         }
 
-        Scanner input = new Scanner(System.in);
-        System.out.println("1/Add New Facilities\n2/Check Facilities List\n");
-        System.out.print("Enter Your Option (1, 2, or 0 to go back): ");
+        Scanner input = null;
+        try {
+            input = new Scanner(System.in);
+            System.out.println("1/Add New Facilities\n2/Check Facilities List\n");
+            System.out.print("Enter Your Option (1, 2, or 0 to go back): ");
 
-        int option = input.nextInt();
-        input.nextLine(); // Consume newline character
+            int option = input.nextInt();
+            input.nextLine(); // Consume newline character
 
-        if (option == 1) {
-            addNewFacility(input);
-        } else if (option == 2) {
-            checkFacilitiesList(input);
-        } else if (option == 0) {
-            System.out.println("Returning to main menu...");
-        } else {
-            System.out.println("Invalid option.");
+            if (option == 1) {
+                addNewFacility(input);
+            } else if (option == 2) {
+                checkFacilitiesList(input);
+            } else if (option == 0) {
+                System.out.println("Returning to main menu...");
+            } else {
+                System.out.println("Invalid option.");
+                facilities();
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Invalid input. Please enter a valid integer.");
+            input.next();
             facilities();
         }
     }

@@ -27,7 +27,7 @@ public class Main {
             String formattedTime = time.format(formatter);
 
             System.out.println("\n--------------------------------------------------------------------------------");
-            System.out.println("      *** Welcome to Hospital and Health Care Management System  ***");
+            System.out.println("               *** Welcome to Hospital  Management System  ***                ");
             System.out.println("--------------------------------------------------------------------------------");
             System.out.print("       Date: " + currentDate + "                            " + "Time: " + formattedTime);
 
@@ -37,39 +37,50 @@ public class Main {
             System.out.println("1. Doctors Section\n2. Patients Section\n3. Pharmacy Section\n4. Hospital Facilities\n5. Exit");
             System.out.println("-----------------------------------------------------------------------------------");
 
-            System.out.print("Enter your option: ");
-            int option = input.nextInt();
-            input.nextLine(); // Consume newline character
 
-            switch (option) {
-                case 1:
-                    Doctors doctors = new Doctors();
-                    doctors.details();
-                    break;
 
-                case 2:
-                    Patients patients = new Patients();
-                    patients.display();
-                    break;
 
-                case 3:
-                    Pharmacy pharmacy = new Pharmacy();
-                    pharmacy.display();
-                    break;
+                try {
 
-                case 4:
-                    Facilities facilities = new Facilities();
-                    facilities.facilities();
-                    break;
+                    System.out.print("Enter your option: ");
+                    int option = input.nextInt();
+                    input.nextLine(); // Consume newline character
 
-                case 5:
-                    System.out.println("Exiting the system... Goodbye!");
-                    input.close();
-                    return; // Exit the program
+                    switch (option) {
+                        case 1:
+                            Doctors doctors = new Doctors();
+                            doctors.details();
+                            break;
 
-                default:
-                    System.out.println("Invalid option. Please select a valid option from (1, 2, 3, 4, or 5).");
-            }
+                        case 2:
+                            Patients patients = new Patients();
+                            patients.display();
+                            break;
+
+                        case 3:
+                            Pharmacy pharmacy = new Pharmacy();
+                            pharmacy.display();
+                            break;
+
+                        case 4:
+                            Facilities facilities = new Facilities();
+                            facilities.facilities();
+                            break;
+
+                        case 5:
+                            System.out.println("Exiting the system... Goodbye!");
+                            input.close();
+                            return; // Exit the program
+
+                        default:
+                            System.out.println("Invalid option. Please select a valid option from (1, 2, 3, 4, or 5).");
+                    }
+
+                }catch (Exception e){
+                    System.out.println("Invalid input. Please enter a valid integer.");
+                    input.next(); // Clear the invalid input
+                }
+
         }
     }
 }

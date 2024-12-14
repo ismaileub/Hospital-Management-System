@@ -27,35 +27,48 @@ public class AddPatient extends Common {
     public void details() {
         Scanner input = new Scanner(System.in);
 
-        System.out.print("Enter Patient ID: ");
-        id = input.nextInt();
-        input.nextLine();
+       while (true){
+           try {
 
-        System.out.print("Enter Patient Name: ");
-        name = input.nextLine();
 
-        System.out.print("Enter Patient Age: ");
-        age = input.nextInt();
-        input.nextLine();
+               System.out.print("Enter Patient ID: ");
+               id = input.nextInt();
+               input.nextLine();
 
-        System.out.print("Enter Patient Gender: ");
-        gender = input.nextLine();
+               System.out.print("Enter Patient Name: ");
+               name = input.nextLine();
 
-        System.out.print("Enter Patient Phone: ");
-        phone = input.nextLine();
+               System.out.print("Enter Patient Age: ");
+               age = input.nextInt();
+               input.nextLine();
 
-        System.out.print("Enter Patient Address: ");
-        address = input.nextLine();
+               System.out.print("Enter Patient Gender: ");
+               gender = input.nextLine();
 
-        System.out.print("Enter Room Number: ");
-        roomNumber = input.nextInt();
-        input.nextLine();
+               System.out.print("Enter Patient Phone: ");
+               phone = input.nextLine();
 
-        System.out.print("Assigned Doctor's Name: ");
-        assignedToDoctor = input.nextLine();
+               System.out.print("Enter Patient Address: ");
+               address = input.nextLine();
 
-        String patientData = id + "," + name + "," + age + "," + gender + "," + phone + "," + address + "," + roomNumber + "," + assignedToDoctor;
-        writeDataInDatabase(patientData, "patients.txt");
+               System.out.print("Enter Room Number: ");
+               roomNumber = input.nextInt();
+               input.nextLine();
+
+               System.out.print("Assigned Doctor's Name: ");
+               assignedToDoctor = input.nextLine();
+
+               String patientData = id + "," + name + "," + age + "," + gender + "," + phone + "," + address + "," + roomNumber + "," + assignedToDoctor;
+               writeDataInDatabase(patientData, "patients.txt");
+               break;
+
+           }catch (Exception e){
+               System.out.println("Invalid input. Please enter  valid input.");
+               input.next();
+           }
+       }
+
+
     }
 
     public void displayAllPatients() {
@@ -71,29 +84,36 @@ public class AddPatient extends Common {
     public void search() {
         Scanner input = new Scanner(System.in);
 
-        System.out.println("\n--- Search Patient ---");
-        System.out.println("1. Search by ID");
-        System.out.println("2. Search by Name");
-        System.out.print("Enter your choice: ");
-        int choice = input.nextInt();
-        input.nextLine(); // Consume newline
+       try {
+           System.out.println("\n--- Search Patient ---");
+           System.out.println("1. Search by ID");
+           System.out.println("2. Search by Name");
+           System.out.print("Enter your choice: ");
+           int choice = input.nextInt();
+           input.nextLine(); // Consume newline
 
-        switch (choice) {
-            case 1:
-                System.out.print("Enter Patient ID: ");
-                String searchId = input.nextLine();
-                searchPatientByIdOrName("patients.txt", searchId, true);
-                break;
+           switch (choice) {
+               case 1:
+                   System.out.print("Enter Patient ID: ");
+                   String searchId = input.nextLine();
+                   searchPatientByIdOrName("patients.txt", searchId, true);
+                   break;
 
-            case 2:
-                System.out.print("Enter Patient Name: ");
-                String searchName = input.nextLine();
-                searchPatientByIdOrName("patients.txt", searchName, false);
-                break;
+               case 2:
+                   System.out.print("Enter Patient Name: ");
+                   String searchName = input.nextLine();
+                   searchPatientByIdOrName("patients.txt", searchName, false);
+                   break;
 
-            default:
-                System.out.println("Invalid choice. Returning to menu...");
-        }
+               default:
+                   System.out.println("Invalid choice. Returning to menu...");
+           }
+       }catch (Exception e){
+           System.out.println(e.getMessage());
+           System.out.println("Invalid input. Please enter a valid integer.");
+           input.next();
+           search();
+       }
     }
 
     // Common method to search by ID or Name

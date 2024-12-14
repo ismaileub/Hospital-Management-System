@@ -26,34 +26,44 @@ public class Doctors extends Common {
         Scanner scanner = new Scanner(System.in);
         int option;
 
-        do {
-            System.out.println("\n--------------------------------------------------------------------------------");
-            System.out.println("                      **DOCTOR SECTION**                                        ");
-            System.out.println("--------------------------------------------------------------------------------");
+      try {
+          do {
+              System.out.println("\n--------------------------------------------------------------------------------");
+              System.out.println("                      **DOCTOR SECTION**                                        ");
+              System.out.println("--------------------------------------------------------------------------------");
 
-            System.out.println("1. Add Doctor");
-            System.out.println("2. Display Doctors Information");
-            System.out.println("0. Return to Main Menu");
-            System.out.print("Choose an option: ");
+              System.out.println("1. Add Doctor");
+              System.out.println("2. Display Doctors Information");
+              System.out.println("0. Return to Main Menu");
+              System.out.print("Choose an option: ");
 
-            option = scanner.nextInt();
-            scanner.nextLine();
+              option = scanner.nextInt();
+              scanner.nextLine();
 
-            switch (option) {
-                case 1:
-                    addDoctor(scanner);
-                    break;
-                case 2:
-                    displayDoctors();
-                    break;
-                case 0:
-                    System.out.println("Returning to the main menu...");
-                    break;
-                default:
-                    System.out.println("Invalid option. Please choose 1, 2, or 0.");
-                    break;
-            }
-        } while (option != 0);
+              switch (option) {
+                  case 1:
+                      addDoctor(scanner);
+                      break;
+                  case 2:
+                      displayDoctors();
+                      break;
+                  case 0:
+                      System.out.println("Returning to the main menu...");
+                      break;
+                  default:
+                      System.out.println("Invalid option. Please choose 1, 2, or 0.");
+                      break;
+              }
+          } while (option != 0);
+
+
+      }catch (Exception e){
+          System.out.println(e.getMessage());
+          System.out.println("Invalid input. Please enter  valid input.");
+          scanner.next();
+          details();
+
+      }
     }
 
     // Display doctor data (header + rows)
@@ -67,36 +77,53 @@ public class Doctors extends Common {
     }
 
     private void addDoctor(Scanner scanner) {
-        System.out.print("Doctor's ID: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
 
-        System.out.print("Doctor's name: ");
-         name = scanner.nextLine();
+       while (true){
+           try {
+               System.out.print("Doctor's ID: ");
+               int id = scanner.nextInt();
+               scanner.nextLine();
 
-        System.out.print("Doctor's age: ");
-         age = scanner.nextInt();
-        scanner.nextLine();
+               System.out.print("Doctor's name: ");
+               name = scanner.next();
 
-        System.out.print("Doctor's gender: ");
-         gender = scanner.nextLine();
+               System.out.print("Doctor's age: ");
+               age = scanner.nextInt();
+               scanner.nextLine();
 
-        System.out.print("Doctor's phone: ");
-         phone = scanner.nextLine();
+               System.out.print("Doctor's gender: ");
+               gender = scanner.nextLine();
 
-        System.out.print("Doctor's qualification: ");
-         qualification = scanner.nextLine();
+               System.out.print("Doctor's phone: ");
+               phone = scanner.nextLine();
 
-        System.out.print("Doctor's timing: ");
-         timing = scanner.nextLine();
+               System.out.print("Doctor's qualification: ");
+               qualification = scanner.nextLine();
 
-        System.out.print("Doctor's room number: ");
-         roomNumber = scanner.nextInt();
-        scanner.nextLine();
+               System.out.print("Doctor's timing: ");
+               timing = scanner.nextLine();
 
-        Doctors doctor = new Doctors(id, name, age, gender, phone, qualification, timing, roomNumber);
-        String data = id + "," + name + "," + age + "," + gender + "," + phone + "," + qualification + "," + timing + "," + roomNumber;
+               System.out.print("Doctor's room number: ");
+               roomNumber = scanner.nextInt();
+               scanner.nextLine();
 
-        writeDataInDatabase(data, "doctorsList.txt");
+               Doctors doctor = new Doctors(id, name, age, gender, phone, qualification, timing, roomNumber);
+               String data = id + "," + name + "," + age + "," + gender + "," + phone + "," + qualification + "," + timing + "," + roomNumber;
+
+               writeDataInDatabase(data, "doctorsList.txt");
+               break;
+
+           }catch (Exception e){
+               System.out.println(e.getMessage());
+               System.out.println("Invalid input. Please enter a valid integer.");
+               scanner.next();
+           }
+
+
+       }
+
     }
+
+
+
 }
